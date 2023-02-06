@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<h1>Products</h1>
+
+<section class="card-container">
+    {% for product in products %}
+        <article class="card">
+            <picture class="thumbnail">
+                <img src="{{ product.imageUrl }}" alt="{{ product.productName }}">
+            </picture>
+            <form action="{{ path('add-item-to-cart') }}" method="POST">
+                <div class="card-content">
+                    <input class="form-control" type="hidden" name="productId" id="{{ product.productId }}">
+                    <h3>{{ product.productName }}</h3>
+                    <p>&euro;{{ product.unitPrice }}</p>
+                    <label for="quantity">Qty</label>
+                    <input class="form-control" type="number" name="quantity" id="quantity">
+                    <input class="my-3 btn btn-primary" type="submit" value="Add to Cart"><br>
+                </div>
+            </form>
+        </article>
+    {% endfor %}
+</section>
+
+{% endblock %}

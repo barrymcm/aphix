@@ -1,0 +1,9 @@
+index:
+    path: /
+    controller: App\Controller\ProductsController::index
+checkout:
+    path: /checkout
+    controller: App\Controller\CheckoutController::index
+add-item-to-cart:
+    path: /add_item_to_cart
+    controller: App\Controller\CheckoutController::addItemToCart
