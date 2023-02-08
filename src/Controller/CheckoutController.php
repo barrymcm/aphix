@@ -25,9 +25,6 @@ class CheckoutController extends AbstractController
         CartRepository $cartRepo
     ): Response
     {
-        $result = $client->fetchProducts();
-        $products = array_splice($result, 0, 2);
-
         $purchaseId = $request->get('0');
         $cartItems = $cartRepo->findByPurchaseIdentifier($purchaseId);
 
