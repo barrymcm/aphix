@@ -2,7 +2,7 @@
 // src/Controller/Products.php
 namespace App\Entity;
 
-class Product {
+class Products {
     
     public $productId;
     public $productName;

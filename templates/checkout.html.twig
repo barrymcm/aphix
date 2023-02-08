@@ -20,18 +20,43 @@
         </div>
 
         <div class="my-3 ms-5 col">
-          <h4>Product Name</h4>
-          <h4>Quantity</h4>
-          <h4>Net Price</h4>
-          <h4>VAT Amount</h4>
-          <h4>Item Subtotal</h4>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th colspan="4">Product Name</th>
+                <th colspan="5">Quantity</th>
+                <th colspan="5">Net Price</th>
+                <th colspan="5">VAT Amount</th>
+                <th>Item Subtotal</th>
+              </tr>
+            </thead>
+            {% set netTotal = 0 %}
+            {% set vat = 0 %}
+
+            {% for product in products %}
+              {% set vat = vat + (product.unitPrice * 0.12) %}
+              {% set quantity = random(1, 5) %}
+              {% set netTotal = (netTotal + product.unitPrice) * quantity %}
+
+              <tbody>
+                <tr>
+                  <td colspan="4">{{ product.productName }}</td>
+                  <td colspan="4">{{ quantity }}</td>
+                  <td colspan="4">{{ product.unitPrice }}</td>
+                  <td colspan="4">{{ (product.unitPrice * 0.12) * quantity }}</td>
+                  <td colspan="4">{{ (product.unitPrice + product.unitPrice * 0.12) * quantity }}</td>
+                </tr>
+              </tbody>
+            {% endfor %}
+          </table>
+          <div class="my-5 ms-5 col">
+            <p>Net Total : {{ netTotal }}</p>
+            <p>Sub Total (inc VAT): {{ netTotal + vat }}</p>
+            <p>Gross Total : {{ netTotal + vat }}</p>
+          </div>
         </div>
 
-        <div class="my-3 ms-5 col">
-          <h4>Net Total</h4>
-          <h4>Sub Total (inc VAT)</h4>
-          <h4>Gross Total</h4>
-        </div>
+
       </div>
     </div>
   </section>

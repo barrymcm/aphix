@@ -3,8 +3,12 @@
 {% block body %}
 
 <h1>Products</h1>
+    {% if result is not null %}
+        <p>{{ result }}</p>
+    {% endif %}
 
-<section class="card-container">
+    <section class="card-container">
+
     {% for product in products %}
         <article class="card">
             <picture class="thumbnail">
@@ -12,11 +16,14 @@
             </picture>
             <form action="{{ path('add-item-to-cart') }}" method="POST">
                 <div class="card-content">
-                    <input class="form-control" type="hidden" name="productId" id="{{ product.productId }}">
+                    <input type="hidden" name="productId" value="{{ product.productId }}">
+                    <input type="hidden" name="purchaseIdentifier" value="{{ purchaseIdentifier }}">
+                    <input type="hidden" name="productName" value="{{ product.productName }}">
+                    <input type="hidden" name="unitPrice" value="{{ product.unitPrice }}">
                     <h3>{{ product.productName }}</h3>
                     <p>&euro;{{ product.unitPrice }}</p>
                     <label for="quantity">Qty</label>
-                    <input class="form-control" type="number" name="quantity" id="quantity">
+                    <input class="form-control" type="number" name="quantity">
                     <input class="my-3 btn btn-primary" type="submit" value="Add to Cart"><br>
                 </div>
             </form>

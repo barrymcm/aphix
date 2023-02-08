@@ -94,8 +94,9 @@
                 Aphix Webshop!
             </div>
             <nav>
+                {% set param = {'purchaseId': purchaseIdentifier} %}
                 <a href="/">Products</a>
-                <a href="{{ path('checkout') }}">Checkout</a>
+                <a href="{{ path('checkout', [purchaseIdentifier]) }}">Checkout</a>
             </nav>
         </div>
 
